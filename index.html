@@ -4,64 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>الشطرنج الملكي</title>
-  <style>
-    body {
-      background-color: #222;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 1rem;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin-bottom: 1rem;
-      color: gold;
-      text-align: center;
-    }
-
-    #chessboard {
-      display: grid;
-      grid-template-columns: repeat(8, 12.5vw);
-      grid-template-rows: repeat(8, 12.5vw);
-      width: 100vw;
-      max-width: 500px;
-      border: 4px solid gold;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    }
-
-    .square {
-      width: 100%;
-      height: 100%;
-      font-size: 5vw;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .light { background-color: #f0d9b5; }
-    .dark  { background-color: #b58863; }
-
-    .square:hover {
-      background-color: #ddd !important;
-    }
-
-    footer {
-      margin-top: 2rem;
-      font-size: 0.9em;
-      color: #ccc;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>♛ الشطرنج الملكي ♚</h1>
@@ -70,5 +13,66 @@
   <footer>حقوق النشر © 2025 - تكافل وطني</footer>
 
   <script src="chessboard.js"></script>
+
+  <!-- كود الدخول إلى الغرفة السرية -->
+  <script>
+    const secretCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
+    let inputBuffer = [];
+
+    document.addEventListener('keydown', function(e) {
+      inputBuffer.push(e.key);
+      if (inputBuffer.length > secretCode.length) {
+        inputBuffer.shift();
+      }
+
+      if (JSON.stringify(inputBuffer) === JSON.stringify(secretCode)) {
+        showSecretRoom();
+      }
+    });
+
+    function showSecretRoom() {
+      const room = document.createElement('div');
+      room.style.position = 'fixed';
+      room.style.top = '0';
+      room.style.left = '0';
+      room.style.width = '100%';
+      room.style.height = '100%';
+      room.style.background = '#111';
+      room.style.zIndex = '9999';
+      room.style.display = 'flex';
+      room.style.flexDirection = 'column';
+      room.style.justifyContent = 'center';
+      room.style.alignItems = 'center';
+      room.innerHTML = `
+        <img src="logo.png" alt="لوغو تكافل" style="max-width: 100px; margin-bottom: 20px;" />
+        <h2 style="color: gold; font-size: 1.5em;">مرحبا بك في الغرفة السرية</h2>
+        <div style="width: 90%; max-width: 400px; margin-top: 20px;">
+          <textarea id="messageInput" placeholder="اكتب رسالتك هنا..." style="width: 100%; height: 100px;"></textarea>
+          <button onclick="sendMessage()" style="margin-top: 10px; width: 100%; padding: 10px; background: gold; color: black;">إرسال</button>
+          <div id="chatBox" style="margin-top: 20px; max-height: 200px; overflow-y: auto; background: #222; padding: 10px; border: 1px solid gold;"></div>
+          <button onclick="closeSecretRoom()" style="margin-top: 15px; width: 100%; padding: 8px; background: #333; color: white;">إغلاق</button>
+        </div>
+      `;
+      document.body.appendChild(room);
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const chat = document.getElementById('chatBox');
+      if (input && chat && input.value.trim()) {
+        const msg = document.createElement('div');
+        msg.textContent = input.value;
+        msg.style.color = 'white';
+        msg.style.marginBottom = '8px';
+        chat.appendChild(msg);
+        input.value = '';
+      }
+    }
+
+    function closeSecretRoom() {
+      const room = document.querySelector('body > div[style*="z-index: 9999"]');
+      if (room) room.remove();
+    }
+  </script>
 </body>
 </html>
