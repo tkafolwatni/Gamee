@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شطرنج ملكي</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>♛ الشطرنج الملكي ♚</title>
+
+  <!-- ملفات CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="secret-style.css" />
+
+  <!-- ملفات مكتبات الشطرنج -->
+  <script src="chess.js"></script>
+  <script src="chessboard.js"></script>
+
+  <!-- مكتبات المساعدة -->
+  <script src="utils.js"></script>
+
+  <!-- ستايل إضافي لتكبير اللوحة على الموبايل -->
+  <style>
+    #board {
+      max-width: 90vw;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
-  <!-- لوحة الشطرنج -->
-  <div id="board" class="chess-board"></div>
+
+  <h1 style="text-align: center; font-size: 26px;">♛ الشطرنج الملكي ♚</h1>
+  <div id="board" style="width: 100%;"></div>
 
   <!-- الغرفة السرية -->
-  <div id="secret-room" class="hidden">
-    <img src="logo.png" alt="لوغو الحزب" class="logo" />
-    <div class="chat-box">
-      <div id="messages"></div>
-      <input type="text" id="message-input" placeholder="اكتب رسالتك هنا...">
-    </div>
+  <div id="secret-room" style="display:none;">
+    <h2>💬 الغرفة السرية 💬</h2>
+    <div id="messages"></div>
+    <input type="text" id="message-input" placeholder="اكتب رسالتك هنا" />
+    <button onclick="sendMessage()">إرسال</button>
   </div>
 
-  <!-- سكربتات -->
-  <script src="js/chess.js"></script>
-  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.js"></script>
-  <script src="chessboard.js"></script>
+  <!-- سكريبت الدخول السري والدردشة -->
+  <script src="secret.js"></script>
+  <script src="chat.js"></script>
+
 </body>
 </html>
