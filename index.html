@@ -1,78 +1,28 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>الشطرنج الملكي</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شطرنج ملكي</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.css">
 </head>
 <body>
-  <h1>♛ الشطرنج الملكي ♚</h1>
-  <div id="chessboard"></div>
+  <!-- لوحة الشطرنج -->
+  <div id="board" class="chess-board"></div>
 
-  <footer>حقوق النشر © 2025 - تكافل وطني</footer>
+  <!-- الغرفة السرية -->
+  <div id="secret-room" class="hidden">
+    <img src="logo.png" alt="لوغو الحزب" class="logo" />
+    <div class="chat-box">
+      <div id="messages"></div>
+      <input type="text" id="message-input" placeholder="اكتب رسالتك هنا...">
+    </div>
+  </div>
 
+  <!-- سكربتات -->
+  <script src="js/chess.js"></script>
+  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard.min.js"></script>
   <script src="chessboard.js"></script>
-
-  <!-- كود الدخول إلى الغرفة السرية -->
-  <script>
-    const secretCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
-    let inputBuffer = [];
-
-    document.addEventListener('keydown', function(e) {
-      inputBuffer.push(e.key);
-      if (inputBuffer.length > secretCode.length) {
-        inputBuffer.shift();
-      }
-
-      if (JSON.stringify(inputBuffer) === JSON.stringify(secretCode)) {
-        showSecretRoom();
-      }
-    });
-
-    function showSecretRoom() {
-      const room = document.createElement('div');
-      room.style.position = 'fixed';
-      room.style.top = '0';
-      room.style.left = '0';
-      room.style.width = '100%';
-      room.style.height = '100%';
-      room.style.background = '#111';
-      room.style.zIndex = '9999';
-      room.style.display = 'flex';
-      room.style.flexDirection = 'column';
-      room.style.justifyContent = 'center';
-      room.style.alignItems = 'center';
-      room.innerHTML = `
-        <img src="logo.png" alt="لوغو تكافل" style="max-width: 100px; margin-bottom: 20px;" />
-        <h2 style="color: gold; font-size: 1.5em;">مرحبا بك في الغرفة السرية</h2>
-        <div style="width: 90%; max-width: 400px; margin-top: 20px;">
-          <textarea id="messageInput" placeholder="اكتب رسالتك هنا..." style="width: 100%; height: 100px;"></textarea>
-          <button onclick="sendMessage()" style="margin-top: 10px; width: 100%; padding: 10px; background: gold; color: black;">إرسال</button>
-          <div id="chatBox" style="margin-top: 20px; max-height: 200px; overflow-y: auto; background: #222; padding: 10px; border: 1px solid gold;"></div>
-          <button onclick="closeSecretRoom()" style="margin-top: 15px; width: 100%; padding: 8px; background: #333; color: white;">إغلاق</button>
-        </div>
-      `;
-      document.body.appendChild(room);
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('messageInput');
-      const chat = document.getElementById('chatBox');
-      if (input && chat && input.value.trim()) {
-        const msg = document.createElement('div');
-        msg.textContent = input.value;
-        msg.style.color = 'white';
-        msg.style.marginBottom = '8px';
-        chat.appendChild(msg);
-        input.value = '';
-      }
-    }
-
-    function closeSecretRoom() {
-      const room = document.querySelector('body > div[style*="z-index: 9999"]');
-      if (room) room.remove();
-    }
-  </script>
 </body>
 </html>
