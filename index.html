@@ -1,1 +1,27 @@
-<!-- Main HTML file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Royal Chess</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="secret-style.css" />
+</head>
+<body>
+  <div id="chess-container">
+    <h1>♛ Royal Chess ♚</h1>
+    <div id="chess-board"></div>
+  </div>
+
+  <div id="secret-room" class="hidden">
+    <img src="logo.png" alt="Logo" class="secret-logo" />
+    <div id="chat-box"></div>
+    <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا واضغط Enter" />
+  </div>
+
+  <script src="utils.js"></script>
+  <script src="chess.js"></script>
+  <script src="secret.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>
