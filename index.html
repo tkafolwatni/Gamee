@@ -1,27 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Royal Chess</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="secret-style.css" />
+  <title>الشطرنج الملكي</title>
+  <style>
+    body {
+      background-color: #222;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1rem;
+      color: gold;
+    }
+
+    #chessboard {
+      display: grid;
+      grid-template-columns: repeat(8, 60px);
+      grid-template-rows: repeat(8, 60px);
+      border: 4px solid gold;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    .square {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .light { background-color: #f0d9b5; }
+    .dark  { background-color: #b58863; }
+
+    .square:hover {
+      background-color: #ddd !important;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-  <div id="chess-container">
-    <h1>♛ Royal Chess ♚</h1>
-    <div id="chess-board"></div>
-  </div>
+  <h1>♛ الشطرنج الملكي ♚</h1>
+  <div id="chessboard"></div>
 
-  <div id="secret-room" class="hidden">
-    <img src="logo.png" alt="Logo" class="secret-logo" />
-    <div id="chat-box"></div>
-    <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا واضغط Enter" />
-  </div>
+  <footer>حقوق النشر © 2025 - تكافل وطني</footer>
 
-  <script src="utils.js"></script>
-  <script src="chess.js"></script>
-  <script src="secret.js"></script>
-  <script src="chat.js"></script>
+  <script src="chessboard.js"></script>
 </body>
 </html>
